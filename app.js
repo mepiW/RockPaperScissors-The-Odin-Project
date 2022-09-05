@@ -1,5 +1,6 @@
-const playBtn = document.querySelector("button");
-const inputField = document.querySelector("input");
+const rockBtn = document.getElementById("rock");
+const paperBtn = document.getElementById("paper");
+const scissorsBtn = document.getElementById("scissors");
 
 const playerChoiceDisplay = document.getElementById("pc");
 const computerChoiceDisplay = document.getElementById("cc");
@@ -7,46 +8,50 @@ const resultDisplay = document.getElementById("result");
 
 const choices = ["rock", "paper", "scissors"];
 
-let playerSelection;
-let computerSelection;
+let playerChoice;
+let computerChoice;
 
 function getComputerChoice() {
-    computerSelection =  choices[Math.floor(Math.random() * choices.length)];
-    return computerChoiceDisplay.innerHTML = `Computer choice: ${computerSelection}`;
+    computerChoice =  choices[Math.floor(Math.random() * choices.length)];
+    return computerChoiceDisplay.innerHTML = `Computer choice: ${computerChoice}`;
 }
-playBtn.onclick = function getPlayerChoice() { 
-    if (inputField.value == "") {
-        alert("You must type your selection!");
-    } else {
-        playerSelection = inputField.value;
-        playerSelection = playerSelection.toLowerCase(playerSelection);
-        playerSelection = playerSelection.replaceAll(" ", "");
-        
-        playerChoiceDisplay.innerHTML = `Player choice: ${playerSelection}`;
-        getComputerChoice(playerSelection);
-        checkWinner();
 
-        inputField.value = "";
-    }
+rockBtn.onclick = function selectRock() {
+    playerChoice = rockBtn.id;
+    getComputerChoice(playerChoice);
+    checkWinner();
+    playerChoiceDisplay.innerHTML = `Player choice: ${playerChoice}`;
+}
+paperBtn.onclick = function selectPaper() {
+    playerChoice = paperBtn.id;
+    getComputerChoice(playerChoice);
+    checkWinner();
+    playerChoiceDisplay.innerHTML = `Player choice: ${playerChoice}`;
+}
+scissorsBtn.onclick = function selectScissors() {
+    playerChoice = scissorsBtn.id;
+    getComputerChoice(playerChoice);
+    checkWinner();
+    playerChoiceDisplay.innerHTML = `Player choice: ${playerChoice}`;
 }
 
 function checkWinner() {
-    if (playerSelection === computerSelection) {
+    if (playerChoice === computerChoice) {
         resultDisplay.innerHTML = "Result: Tie!";
     } else if (
-        (playerSelection === "rock" && computerSelection == "scissors") ||
-        (playerSelection === "paper" && computerSelection == "rock") ||
-        (playerSelection === "scissors" && computerSelection == "paper")
+        (playerChoice === "rock" && computerChoice == "scissors") ||
+        (playerChoice === "paper" && computerChoice == "rock") ||
+        (playerChoice === "scissors" && computerChoice == "paper")
     ){
         resultDisplay.innerHTML = "Result: You win!";
     } else if (
-        (playerSelection === "rock" && computerSelection == "paper") ||
-        (playerSelection === "paper" && computerSelection == "scissors") ||
-        (playerSelection === "scissors" && computerSelection == "rock")
+        (playerChoice === "rock" && computerChoice == "paper") ||
+        (playerChoice === "paper" && computerChoice == "scissors") ||
+        (playerChoice === "scissors" && computerChoice == "rock")
     ){
         resultDisplay.innerHTML = "Result: You lost!";
     } else {
-        alert(`${playerSelection} is not part of the choices!`);
+        alert(`${playerChoice} is not part of the choices!`);
         inputField.value = "";
         playerChoiceDisplay.innerHTML = "Player choice: ";
         computerChoiceDisplay.innerHTML = "Computer choice: ";
