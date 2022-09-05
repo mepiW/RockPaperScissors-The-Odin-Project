@@ -10,20 +10,32 @@ body {
     flex-direction: column;
     align-items: center;
 }
-input {
-    width: 200px;
-    height: 28px;
-    font-size: 18px;
+.choiceBtns {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 25px;
+}
+.result {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.player, .computer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 button {
-    width: 75px;
-    height: 33px;
-    display: inline;
-    font-size: 20px;
+    font-size: 45px;
+    width: 85px;
     background-color: #ff4942;
     color: #fff;
     outline: none;
-    border: 1.8px solid #333;
+    border: 2px solid #222;
     border-radius: 5px;
 }
 div {
@@ -31,8 +43,5 @@ div {
     font-size: 28px;
 }
 footer {
-    font-size: 18px;
-    position: absolute;
-    top: 585px;
-    left: 575px;
+    font-size: 20px;
 }

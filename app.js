@@ -6,10 +6,16 @@ const playerChoiceDisplay = document.getElementById("pc");
 const computerChoiceDisplay = document.getElementById("cc");
 const resultDisplay = document.getElementById("result");
 
+const playerScoreDisplay = document.getElementById("playerScore");
+const computerScoreDisplay = document.getElementById("computerScore");
+
 const choices = ["rock", "paper", "scissors"];
 
 let playerChoice;
 let computerChoice;
+
+let playerPoints = 0;
+let computerPoints = 0;
 
 function getComputerChoice() {
     computerChoice =  choices[Math.floor(Math.random() * choices.length)];
@@ -37,24 +43,23 @@ scissorsBtn.onclick = function selectScissors() {
 
 function checkWinner() {
     if (playerChoice === computerChoice) {
-        resultDisplay.innerHTML = "Result: Tie!";
+        resultDisplay.innerHTML = "Tie!";
     } else if (
         (playerChoice === "rock" && computerChoice == "scissors") ||
         (playerChoice === "paper" && computerChoice == "rock") ||
         (playerChoice === "scissors" && computerChoice == "paper")
     ){
-        resultDisplay.innerHTML = "Result: You win!";
+        resultDisplay.innerHTML = "You win!";
+        playerPoints++;
+        playerScoreDisplay.innerHTML = `You: ${playerPoints}`;
+
     } else if (
         (playerChoice === "rock" && computerChoice == "paper") ||
         (playerChoice === "paper" && computerChoice == "scissors") ||
         (playerChoice === "scissors" && computerChoice == "rock")
     ){
-        resultDisplay.innerHTML = "Result: You lost!";
-    } else {
-        alert(`${playerChoice} is not part of the choices!`);
-        inputField.value = "";
-        playerChoiceDisplay.innerHTML = "Player choice: ";
-        computerChoiceDisplay.innerHTML = "Computer choice: ";
-        resultDisplay.innerHTML = "Result: "
+        resultDisplay.innerHTML = "You lost!";
+        computerPoints++;
+        computerScoreDisplay.innerHTML = `Computer: ${computerPoints}`;
     }
 }
