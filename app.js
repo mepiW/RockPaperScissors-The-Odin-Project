@@ -1,44 +1,25 @@
-const rockBtn = document.getElementById("rock");
-const paperBtn = document.getElementById("paper");
-const scissorsBtn = document.getElementById("scissors");
-
-const playerChoiceDisplay = document.getElementById("pc");
-const computerChoiceDisplay = document.getElementById("cc");
-const resultDisplay = document.getElementById("result");
-
-const playerScoreDisplay = document.getElementById("playerScore");
-const computerScoreDisplay = document.getElementById("computerScore");
-
-const choices = ["rock", "paper", "scissors"];
+const playerChoiceDisplay = document.querySelector(".player");
+const computerChoiceDisplay = document.querySelector(".computer");
+const resultDisplay = document.querySelector(".result");
+const choiceBtns = document.querySelectorAll("button");
 
 let playerChoice;
 let computerChoice;
 
-let playerPoints = 0;
-let computerPoints = 0;
+const choices = ["rock", "paper", "scissors"];
+
+choiceBtns.forEach(choiceBtn => addEventListener("click", e => {
+    playerChoice = e.target.id;
+    playerChoiceDisplay.innerHTML = `Player choice: ${playerChoice}`;
+
+    getComputerChoice();
+    checkWinner();
+}));
 
 function getComputerChoice() {
-    computerChoice =  choices[Math.floor(Math.random() * choices.length)];
+    let randomChoice = Math.floor(Math.random() * choices.length);
+    computerChoice = choices[randomChoice];
     return computerChoiceDisplay.innerHTML = `Computer choice: ${computerChoice}`;
-}
-
-rockBtn.onclick = function selectRock() {
-    playerChoice = rockBtn.id;
-    getComputerChoice(playerChoice);
-    checkWinner();
-    playerChoiceDisplay.innerHTML = `Player choice: ${playerChoice}`;
-}
-paperBtn.onclick = function selectPaper() {
-    playerChoice = paperBtn.id;
-    getComputerChoice(playerChoice);
-    checkWinner();
-    playerChoiceDisplay.innerHTML = `Player choice: ${playerChoice}`;
-}
-scissorsBtn.onclick = function selectScissors() {
-    playerChoice = scissorsBtn.id;
-    getComputerChoice(playerChoice);
-    checkWinner();
-    playerChoiceDisplay.innerHTML = `Player choice: ${playerChoice}`;
 }
 
 function checkWinner() {
@@ -50,8 +31,6 @@ function checkWinner() {
         (playerChoice === "scissors" && computerChoice == "paper")
     ){
         resultDisplay.innerHTML = "You win!";
-        playerPoints++;
-        playerScoreDisplay.innerHTML = `You: ${playerPoints}`;
 
     } else if (
         (playerChoice === "rock" && computerChoice == "paper") ||
@@ -59,7 +38,5 @@ function checkWinner() {
         (playerChoice === "scissors" && computerChoice == "rock")
     ){
         resultDisplay.innerHTML = "You lost!";
-        computerPoints++;
-        computerScoreDisplay.innerHTML = `Computer: ${computerPoints}`;
     }
 }
